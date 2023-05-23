@@ -84,6 +84,23 @@
     <script src='./lib/js/fhir-client-cerner-additions-1.0.0.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>
+      
+      
+import { initializeClient } from '@resmedoss/chp-sdk-typescript'
+import { SdkConfig } from "@resmedoss/chp-sdk-typescript/dist/domain/fhir-client-types";
+//sdk config details can be fetched from tenant API
+const sdkConfig = {
+    clientId: process.env.CLIENT_ID || '0oa1o6k5y2xsu2wEq0h8', 
+    clientSecret: process.env.CLIENT_SECRET || '1IpRcYVbwAuPButEhcqom4vIkNFKQFwJn97M1XAB',
+    apiKey: process.env.API_KEY || 'K1b2qsbZ1G4a3cjrq96FQ81bZfWpZ4Ar9CnJ9vDI',
+    apiUrl: process.env.API_URL || 'https://api.dev.resmedchp.com',
+    tokenUrl: process.env.TOKEN_URL || 'https://resmed-sandbox-dht.oktapreview.com/oauth2/aus13xvvtnecfY6Hf0h8/v1/token',
+  } as SdkConfig
+
+// The client is initialized with the bearer token. This can be used for making CHP API calls
+const client = await initializeClient(sdkConfig)
+      
+      
       extractData().then(
         //Display Patient Demographics and Observations if extractData was success
         function(p) {
